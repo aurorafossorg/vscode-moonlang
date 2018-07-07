@@ -1,0 +1,195 @@
+{
+	"name": "Moon",
+	"scopeName": "source.moon",
+	"comment": "Moon Syntax: version 1.0",
+	"patterns": [
+		{
+			"name": "comment.block.moon",
+			"comment": "Block Comments",
+			"begin": "/\\*",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.begin.moon"
+				}
+			},
+			"end": "\\*/",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.end.moon"
+				}
+			}
+		},
+		{
+			"name": "comment.line.moon",
+			"comment": "Line Comments",
+			"begin": "//",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.moon"
+				}
+			},
+			"end": "(?=\\n)"
+		},
+		{
+			"name": "string.quoted.double.moon",
+			"comment": "Double Quoted String",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.c"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.c"
+				}
+			}
+		},
+		{
+			"name": "string.quoted.raw.moon",
+			"comment": "Raw string literals",
+			"begin": "`",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.go"
+				}
+			},
+			"end": "`",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.go"
+				}
+			}
+		},
+		{
+			"name": "keyword.declaration.moon",
+			"match": "\\b(def)\\b",
+			"captures": {
+				"1": {
+					"name": "punctuation.section.declaration.begin.moon"
+				}
+			}
+		},
+		{
+			"begin": "\\b(import)\\s+",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.import.moon"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"include": "#imports"
+				}
+			]
+		},
+		{
+			"match": "\\b(include|import|global|local|label|goto)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.generic.moon"
+				}
+			}
+		},
+		{
+			"name": "support.function.builtin.moon",
+			"comment": "Built-in functions",
+			"match": "\\b(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)\\b"
+		},
+		{
+			"name": "constant.numeric.floating-point.moon",
+			"comment": "Floating-point literals",
+			"match": "(\\.\\d+([Ee][-+]\\d+)?i?)\\b|\\b\\d+\\.\\d*(([Ee][-+]\\d+)?i?\\b)?"
+		},
+		{
+			"comment": "Integers",
+			"match": "\\b((0x[0-9a-fA-F]+)|(0[0-7]+i?)|(\\d+([Ee]\\d+)?i?)|(\\d+[Ee][-+]\\d+i?))\\b",
+			"name": "constant.numeric.integer.moon"
+		},
+		{
+			"comment": "Language constants",
+			"match": "\\b(true|false)\\b",
+			"name": "constant.language.moon"
+		},
+		{
+			"comment": "Flow control keywords",
+			"match": "\\b(break|case|continue|default|else|for|goto|if|return|switch)\\b",
+			"name": "keyword.control.moon"
+		},
+		{
+			"match": "\\bconst\\b",
+			"name": "keyword.const.moon"
+		},
+		{
+			"match": "\\bdef\\b",
+			"name": "keyword.declaration.moon"
+		},
+		{
+			"match": "\\bstruct\\b",
+			"name": "keyword.struct.moon"
+		}
+	],
+	"repository" : {
+		"keywords": {
+			"patterns": [
+				{
+					"comment": "Flow control keywords",
+					"match": "\\b(break|case|continue|default|else|for|goto|if|return|switch)\\b",
+					"name": "keyword.control.moon"
+				},
+				{
+					"match": "\\bconst\\b",
+					"name": "keyword.const.moon"
+				},
+				{
+					"match": "\\bdef\\b",
+					"name": "keyword.declaration.moon"
+				},
+				{
+					"match": "\\bstruct\\b",
+					"name": "keyword.struct.moon"
+				}
+			]
+		},
+		"imports": {
+			"patterns": [
+				{
+					"match": "((?!\\s+\")[^\\s]*)?\\s*((\")([^\"]*)(\"))",
+					"captures": {
+						"1": {
+							"name": "entity.alias.import.moon"
+						},
+						"2": {
+							"name": "string.quoted.double.moon"
+						},
+						"3": {
+							"name": "punctuation.definition.string.begin.moon"
+						},
+						"4": {
+							"name": "entity.name.import.moon"
+						},
+						"5": {
+							"name": "punctuation.definition.string.end.moon"
+						}
+					}
+				},
+				{
+					"begin": "\\(",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.imports.begin.bracket.round.moon"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.imports.end.bracket.round.moon"
+						}
+					}
+				}
+			]
+		}
+	}
+}

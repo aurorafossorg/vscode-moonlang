@@ -1,0 +1,25 @@
+{
+	"name": "moonlang",
+	"displayName": "Moon Programming Language",
+	"description": "Provides syntax highlighting, bracket matching and folding in Moon files.",
+	"version": "1.0.0",
+	"publisher": "aurorafoss",
+	"license": "MIT",
+	"engines": { "vscode": "*" },
+	"scripts": {
+		"update-grammar": "node ../../build/npm/update-grammar.js ./syntaxes/moon.tmLanguage.json"
+	},
+	"contributes": {
+		"languages": [{
+			"id": "moon",
+			"extensions": [ ".moon" ],
+			"aliases": [ "Moon", "moon" ],
+			"configuration": "./language-configuration.json"
+		}],
+		"grammars": [{
+			"language": "moon",
+			"scopeName": "source.moon",
+			"path": "./syntaxes/moon.tmLanguage.json"
+		}]
+	}
+}
